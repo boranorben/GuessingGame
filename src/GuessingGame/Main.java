@@ -1,4 +1,4 @@
-package GuessingGame;
+package guessinggame;
 
 /**
  * Run the guessing game to guess the secret number.
