@@ -7,23 +7,21 @@ import java.util.Random;
  * @author Issaree Srisomboon
  *
  */
-
 public class GuessingGame {
 	private int upperBound;
 	private int secret;
 	private String hint;
-	private int cnt;
+	private int count;
 	
 	/**
 	 * Initialize a new game.
 	 * @param upperBound is the max value for the secret number. (>1)
 	 */
-
 	public GuessingGame(int upperBound) {
 		this.upperBound = upperBound;
 		this.secret = getRandomNumber(upperBound);
 		this.hint = "I'm Thinking of a number between 1 and " + this.upperBound;
-		this.cnt = 0;
+		this.count = 0;
 	}
 	
 	/**
@@ -32,19 +30,16 @@ public class GuessingGame {
 	 * @return true if a number from user is same as the secret number and 
 	 * return false if a number from user is not same as the secret number.
 	 */
-	
 	public boolean guess(int number) {
+		this.count++;
 		if (this.secret == number) {
-			this.hint = "Right! The secret is " + this.secret + ".";
-			this.cnt++;
+			this.hint = String.format("Right! The secret is %d.\nCorrect. You used %d guesses.",this.secret,this.count);
 			return true;
 		} else if (this.secret < number) {
 			this.hint = "Sorry, too large.";
-			this.cnt++;
 			return false;
 		} else
 			this.hint = "Sorry too small.";
-		this.cnt++;
 		return false;
 	}
 	
@@ -52,7 +47,6 @@ public class GuessingGame {
 	 * Return a hint based on the most recent guess.
 	 * @return hint based on most recent guess.
 	 */
-	
 	public String getHint() {
 		return hint;
 	}
@@ -61,7 +55,6 @@ public class GuessingGame {
 	 * Set hint to be current hint.
 	 * @param hint based on most recent guess.
 	 */
-	
 	public void setHint(String hint) {
 		this.hint = hint;
 	}
@@ -71,7 +64,6 @@ public class GuessingGame {
 	 * @param limit is the upper limit for random number.
 	 * @return a random number between 1 and limit.
 	 */
-	
 	public int getRandomNumber(int limit) {
 		long seed = System.currentTimeMillis();
 		Random rand = new Random(seed);
@@ -82,7 +74,6 @@ public class GuessingGame {
 	 * Return a value of upperBound from the User.
 	 * @return a value of upperBound from the User.
 	 */
-	
 	public int getUpperBound() {
 		return upperBound;
 	}
@@ -91,7 +82,6 @@ public class GuessingGame {
 	 * Set an upperBound
 	 * @param upperBound is the maximum number from 1 that the user wants to guess.
 	 */
-	
 	public void setUpperBound(int upperBound) {
 		this.upperBound = upperBound;
 	}
@@ -100,9 +90,7 @@ public class GuessingGame {
 	 * Return counter of guessing for 1 game.
 	 * @return counter of guessing for 1 game.
 	 */
-	
 	public int getCount() {
-		return this.cnt;
+		return this.count;
 	}
 }
-
